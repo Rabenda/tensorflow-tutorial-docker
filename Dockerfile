@@ -15,5 +15,5 @@ RUN cp -r /git/tensorflow-tutorial/caicloud.tensorflow /caicloud.tensorflow
 RUN cp -r /git/tensorflow-tutorial/Deep_Learning_with_TensorFlow/ /notebooks/Deep_Learning_with_TensorFlow/
 RUN cp /git/tensorflow-tutorial/run_tf.sh /run_tf.sh
 RUN sed -i "s/notebook/notebook --allow-root/g" /run_jupyter.sh
-RUN echo "export PASSWORD='notebook'" >> /etc/profile
+ENV PASSWORD notebook
 CMD ["/run_tf.sh"]
