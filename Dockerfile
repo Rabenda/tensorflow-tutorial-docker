@@ -7,13 +7,13 @@ RUN apt update \
     && pip install caicloud.tensorflow \
     && mkdir /git \
     && cd /git \
-    && git clone https://github.com/caicloud/tensorflow-tutorial.git
+    && git clone --depth=1 https://github.com/caicloud/tensorflow-tutorial.git
 
 RUN rm -rf /notebooks/*
 
-COPY /git/tensorflow-tutorial/caicloud.tensorflow /caicloud.tensorflow
-COPY /git/tensorflow-tutorial/Deep_Learning_with_TensorFlow/ /notebooks/Deep_Learning_with_TensorFlow/
-COPY /git/tensorflow-tutorial/run_tf.sh /run_tf.sh
+RUN cp -r /git/tensorflow-tutorial/caicloud.tensorflow /caicloud.tensorflow
+RUN cp -r /git/tensorflow-tutorial/Deep_Learning_with_TensorFlow/ /notebooks/Deep_Learning_with_TensorFlow/
+RUN cp /git/tensorflow-tutorial/run_tf.sh /run_tf.sh
 
 RUN echo "c.NotebookApp.password = u'sha1:b3f8790d4455:a20adad91a461b3bd3855412ee589fb33db21af1'" >> /root/.jupyter/jupyter_notebook_config.py
 
